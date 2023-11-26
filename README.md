@@ -29,6 +29,10 @@ How can you make sure that a selfie video - captured by a phone - is really show
 2. Decide wether you want to use webcam input or not. If not, input file is necessary.
 2. ./main.py [--webcam:True|False] [input_file]
 3. Results will be displayed on standard output. You may redirect it to an output file.
+4. Parsing the results:
+	1. Blurred rate: gives an output if the video is blurred. **Range: 0-1, 3 decimals**. Higher numbers may indicate deepfakes. Normally it should stay below 0.02
+	2. Variance median: gives an output of the face element processing. **Range: 0-infinite, 3 decimals**. The higher the number, the probability of deepfake is higher. Normally it should stay below 30. 
+	3. Success rate: **Range: 0-1, 3 decimals**, gives an information about how many frames were able to detect a fully fledged face. Depends on video quality, it should stay above 0.4.
 
 ## Team
 * Martin Polyak - ([polyakmartin@draken.hu](mailto:polyakmartin@draken.hu))
