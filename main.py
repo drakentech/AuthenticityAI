@@ -6,6 +6,7 @@ from statistics import variance
 import itertools
 import time
 import argparse
+import sys
 
 face_cascade = cv2.CascadeClassifier('models/haarcascade_frontalface_alt.xml')
 eye_cascade = cv2.CascadeClassifier('models/haarcascade_eye.xml')
@@ -183,6 +184,11 @@ def main():
     parser.add_argument('--webcam', default=False, type=bool, help='Whether to use webcam input (True or False)')
     parser.add_argument('input_file', nargs='?', default=None, help='Path to the input file (optional if webcam=True)')
     args = parser.parse_args()
+
+    if args.webcam is False and args.input_file is None:
+        print("Error: Please provide either --webcam option or input file.")
+        parser.print_help()
+        sys.exit(1)
 
     # Access the input file path using args.input_file
     detect(args.input_file, args.webcam)
