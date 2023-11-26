@@ -38,6 +38,7 @@ from matplotlib import pyplot as plt
 
 #webcam=True #if working with video file then make it 'False'
 webcam=True
+input_file_name="videocall_blur.webm"
 
 def is_blurred(image, threshold=100):
     # Convert the image to grayscale
@@ -76,7 +77,7 @@ def detect():
     if webcam:
         video_cap = cv2.VideoCapture(0) # use 0,1,2..depanding on your webcam
     else:
-        video_cap = cv2.VideoCapture("videocall_blur.webm")
+        video_cap = cv2.VideoCapture(input_file_name)
     while True:
         # Capture frame-by-frame
         ret, img = video_cap.read()
@@ -121,10 +122,10 @@ def detect():
                     color = (0, 0, 255)
                     ecenter = (int(ex+(ew/2)), int(ey+(eh/2)))
                     if ecenter[1] > int(h/2):
-                        print("Not valid eye coord: ", ecenter)
+                        pass
+                        #print("Not valid eye coord: ", ecenter)
                     else:
-                        print("Eye center coordinate : ", ecenter)
-
+                        #print("Eye center coordinate : ", ecenter)
                         roi_color = cv2.circle(roi_color, ecenter , 5, color, -1)
                         roi_color = cv2.putText(roi_color,str(ecenter), ecenter, font, 0.5, font_color)
                         cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(213,255,0),2)
@@ -161,9 +162,11 @@ def detect():
 
                     angleslist.append(int(sum(angles)))
                 else:
-                    print("Artifactlist is empty!")
+                    pass
+                    #print("Artifactlist is empty!")
             except Exception as e:
-                print(f"An error has occoured: {e}")
+                pass
+                #print(f"An error has occoured: {e}")
 
 
             cv2.imshow('Face Detection on Video', img)
