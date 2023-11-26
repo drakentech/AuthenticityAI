@@ -26,10 +26,8 @@ How can you make sure that a selfie video - captured by a phone - is really show
 
 ## Install & Usage
 1. Install the necessary packages from requirements.txt
-2. Edit the main.py as follows:
-	1. If input is a webcam, set webcam=True
-	2. If input is a file, set webcam=False, and define input_file_name="video.mp4"
-2. ./main.py 
+2. ./main.py [input_file]
+3. Results will be displayed on standard output. You may redirect it to an output file.
 
 ## Team
 * Martin Polyak - ([polyakmartin@draken.hu](mailto:polyakmartin@draken.hu))

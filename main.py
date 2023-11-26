@@ -5,6 +5,7 @@ import math
 from statistics import variance
 import itertools
 import time
+import argparse
 
 face_cascade = cv2.CascadeClassifier('models/haarcascade_frontalface_alt.xml')
 eye_cascade = cv2.CascadeClassifier('models/haarcascade_eye.xml')
@@ -37,8 +38,7 @@ blurlist = []
 from matplotlib import pyplot as plt 
 
 #webcam=True #if working with video file then make it 'False'
-webcam=True
-input_file_name="videocall_blur.webm"
+webcam=False
 
 def is_blurred(image, threshold=100):
     # Convert the image to grayscale
@@ -73,7 +73,7 @@ def calculate_angles(points):
         angles.append(angle_degrees)
     return angles
 
-def detect():
+def detect(input_file_name):
     if webcam:
         video_cap = cv2.VideoCapture(0) # use 0,1,2..depanding on your webcam
     else:
@@ -81,6 +81,9 @@ def detect():
     while True:
         # Capture frame-by-frame
         ret, img = video_cap.read()
+        if not ret:
+            video_cap.release()
+            break
 
         #converting to gray image for faster video processing
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -176,12 +179,21 @@ def detect():
     video_cap.release()
 
 def main():
-    detect()
+    parser = argparse.ArgumentParser(description='Process some data from an input file')
+    parser.add_argument('input_file', help='Path to the input file')
+    args = parser.parse_args()
+    # Access the input file path using args.input_file
+    input_file_name = args.input_file    
+    detect(input_file_name)
     cv2.destroyAllWindows()
     for sublist in goodtriangleslist:
         sublist.sort()
     transposed_data = list(zip(*goodtriangleslist))
-    print("Blurred rate: ", "{:.3f}".format(len(goodblurlist)/len(blurlist)))
+    if len(blurlist)==0:
+        blurresult=0
+    else:
+        blurresult = len(goodblurlist)/len(blurlist)
+    print("Blurred rate: ", "{:.3f}".format(blurresult))
     v = []
     for i, numbers in enumerate(transposed_data, 1):
         var = variance(numbers)
