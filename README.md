@@ -26,12 +26,13 @@ How can you make sure that a selfie video - captured by a phone - is really show
 
 ## Install & Usage
 1. Install the necessary packages from requirements.txt
-2. Run sudo rm -rf /
-3. main.py [input file] [output list]
+2. ./face_eye_detection.py [video file]
+3. Results will be displayed on standard output. You may redirect the output to a file:
+	1. ./face_eye_detection.py [video file] > [result file]
 
 ## Team
-* Martin Polyak - API, Backend, Frontend ([polyakmartin@draken.hu](mailto:polyakmartin@draken.hu))
-* Krisztian Gava - API, Backend, Servers ([gavakrisztian@draken.hu](mailto:gavakrisztian@draken.hu))
-* Szabolcs Viktor Ladik - UI, UX, PM ([ladikszabolcs@draken.hu](mailto:ladikszabolcs@draken.hu))  
+* Martin Polyak - ([polyakmartin@draken.hu](mailto:polyakmartin@draken.hu))
+* Krisztian Gava - ([gavakrisztian@draken.hu](mailto:gavakrisztian@draken.hu))
+* Szabolcs Viktor Ladik - ([ladikszabolcs@draken.hu](mailto:ladikszabolcs@draken.hu))  
 
 [Draken OÜ](https://draken.ee)
