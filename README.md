@@ -26,7 +26,8 @@ How can you make sure that a selfie video - captured by a phone - is really show
 
 ## Install & Usage
 1. Install the necessary packages from requirements.txt
-2. ./main.py [input_file]
+2. Decide wether you want to use webcam input or not. If not, input file is necessary.
+2. ./main.py [--webcam:True|False] [input_file]
 3. Results will be displayed on standard output. You may redirect it to an output file.
 
 ## Team

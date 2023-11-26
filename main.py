@@ -38,7 +38,7 @@ blurlist = []
 from matplotlib import pyplot as plt 
 
 #webcam=True #if working with video file then make it 'False'
-webcam=False
+#webcam=False
 
 def is_blurred(image, threshold=100):
     # Convert the image to grayscale
@@ -73,7 +73,7 @@ def calculate_angles(points):
         angles.append(angle_degrees)
     return angles
 
-def detect(input_file_name):
+def detect(input_file_name, webcam):
     if webcam:
         video_cap = cv2.VideoCapture(0) # use 0,1,2..depanding on your webcam
     else:
@@ -179,12 +179,13 @@ def detect(input_file_name):
     video_cap.release()
 
 def main():
-    parser = argparse.ArgumentParser(description='Process some data from an input file')
-    parser.add_argument('input_file', help='Path to the input file')
+    parser = argparse.ArgumentParser(description='Process some data from an input file or webcam')
+    parser.add_argument('--webcam', default=False, type=bool, help='Whether to use webcam input (True or False)')
+    parser.add_argument('input_file', nargs='?', default=None, help='Path to the input file (optional if webcam=True)')
     args = parser.parse_args()
+
     # Access the input file path using args.input_file
-    input_file_name = args.input_file    
-    detect(input_file_name)
+    detect(args.input_file, args.webcam)
     cv2.destroyAllWindows()
     for sublist in goodtriangleslist:
         sublist.sort()
